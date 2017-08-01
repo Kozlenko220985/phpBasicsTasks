@@ -8,11 +8,12 @@
     <title>Document</title>
 </head>
 <body>
-<form  action ="15.php" method = "POST">
+<?php if (!isset($_POST['button'])) { ?>
+    <form action=" <?= $_SERVER['SCRIPT_NAME'] ?>" method="post" ">
     <label for="first">Чило №1<br></label>
-    <input type="text" id="first" name = "a"><br>
+    <input type="text" id="first" name="a"><br>
     <label for="second">Чило №2<br></label>
-    <input type="text"id="second" name = "b"><br>
+    <input type="text" id="second" name="b"><br>
     <select name="operator">
         <option value="+">+</option>
         <option value="-">-</option>
@@ -20,19 +21,37 @@
         <option value="/">/</option>
         <option value="%">%</option>
     </select><br><br>
-    <input type = "submit" value = "посчитать" name = "button">
-</form>
-<?php
-
-
-if(isset($_POST['button'])){
+    <input type="submit" value="посчитать" name="button">
+    </form>
+    <?php
+} else {
+    if ($_POST['b'] == 0 && $_POST['operator'] == '/') {
+        echo "на 0 делить нельзя";
+    } elseif ($_POST['operator'] == '+') {
+        $result = $_POST['a'] + $_POST['b'];
+        echo $_POST['a'] . $_POST['operator'] . $_POST['b'] . '=' . $result;
+    } elseif ($_POST['operator'] == '-') {
+        $result = $_POST['a'] - $_POST['b'];
+        echo $_POST['a'] . $_POST['operator'] . $_POST['b'] . '=' . $result;
+    } elseif ($_POST['operator'] == '/') {
+        $result = $_POST['a'] / $_POST['b'];
+        echo $_POST['a'] . $_POST['operator'] . $_POST['b'] . '=' . $result;
+    } elseif ($_POST['operator'] == '*') {
+        $result = $_POST['a'] * $_POST['b'];
+        echo $_POST['a'] . $_POST['operator'] . $_POST['b'] . '=' . $result;
+    } elseif ($_POST['operator'] == '%') {
+        $result = $_POST['a'] % $_POST['b'];
+        echo $_POST['a'] . $_POST['operator'] . $_POST['b'] . '=' . $result;
+    }
+}
+/*if(isset($_REQUEST['button'])){
     $operator = $_POST['operator'];
     $a = $_POST ['a'];
-    $b = $_POST ['b'];
-}
-// 1 вариант
+    $b = $_POST ['b'];*/
 
-if ($b==0 and $operator=='/'){
+// 2 вариант
+
+/*if ($b==0 and $operator=='/'){
     echo "на 0 делить нельзя";
 }elseif ($operator == '+') {
     $result=$a + $b;
@@ -49,9 +68,9 @@ if ($b==0 and $operator=='/'){
 }elseif ($operator == '%'){
     $result=$a % $b;
     echo $a.$operator.$b.'='.$result;
-}
+}*/
 
-//2 вариант
+//3 вариант
 
 /*switch ($operator):
     case('+'):
