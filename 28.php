@@ -16,7 +16,7 @@
     </form>
     <?php
 }else{
-    if(($_REQUEST['login']) == 'Konstantin' && ($_REQUEST['pass']) == 'richman1'){
+    if(($_REQUEST['login']) == 'Konstantin' && ($_REQUEST['pass']) == ''){
         echo "Доступ открыт для пользователя {$_REQUEST['login']}";
     }else{
         echo "Доступ закрыт";
